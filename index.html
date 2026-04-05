@@ -10,16 +10,59 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;}
 
 @media(max-width:768px){
-  .hero-grid{grid-template-columns:1fr!important;padding:100px 24px 60px!important;}
-  .features-grid{grid-template-columns:1fr!important;padding:60px 24px!important;}
-  .journal-grid{grid-template-columns:1fr!important;padding:60px 24px!important;}
-  .pricing-grid{grid-template-columns:1fr!important;padding:60px 24px!important;}
-  .email-section{padding:60px 24px!important;}
-  .journal-covers{grid-template-columns:repeat(3,1fr)!important;}
-  .feature-number{font-size:28px!important;}
-  h1,h2{font-size:36px!important;}
-  .hero-title{font-size:52px!important;}
-  .nav-links{gap:16px!important;}
+  /* Nav */
+  nav{padding:12px 20px!important;}
+  nav>div{gap:14px!important;}
+  nav a[href="#email"]{padding:8px 14px!important;font-size:10px!important;}
+
+  /* Hero */
+  .hero-grid{
+    grid-template-columns:1fr!important;
+    padding:90px 24px 48px!important;
+    gap:24px!important;
+    min-height:auto!important;
+  }
+  .hero-grid>div:last-child{display:none!important;}
+
+  /* Ticker */
+  .ticker-wrap{padding:12px 0!important;}
+
+  /* Features grid - single column on mobile */
+  .features-grid{
+    grid-template-columns:1fr!important;
+    padding:48px 24px!important;
+    gap:0!important;
+  }
+  .features-grid>div{padding:28px 24px!important;}
+
+  /* Journal section */
+  .journal-grid{
+    grid-template-columns:1fr!important;
+    padding:48px 24px!important;
+    gap:32px!important;
+  }
+  .journal-covers{
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:12px!important;
+  }
+
+  /* Pricing - stack vertically */
+  .pricing-grid{
+    grid-template-columns:1fr!important;
+    padding:48px 24px!important;
+    gap:0!important;
+    margin-bottom:0!important;
+  }
+  .pricing-grid>div{padding:36px 28px!important;}
+
+  /* Email section */
+  #email{padding:60px 24px!important;}
+  #email>div{flex-direction:column!important;max-width:100%!important;}
+  #email input{width:100%!important;margin-bottom:10px!important;}
+  #email button{width:100%!important;}
+
+  /* Footer */
+  footer{padding:32px 24px!important;flex-direction:column!important;text-align:center!important;gap:16px!important;}
 }
 </style></head><body><nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid #efefef;flex-wrap:wrap;gap:8px;">
   <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
