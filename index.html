@@ -118,7 +118,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
         <div style="border-left:2px solid #ff69b4;padding-left:12px;"><span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#888888;display:block;margin-bottom:3px;">Gift Set</span><span style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:300;color:#1a1a1a;">$129</span></div>
       </div>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-  <input id="journal-waitlist-email" type="email" placeholder="your@email.com" style="padding:14px 18px;border:1px solid #e0d8d0;font-size:11px;letter-spacing:0.08em;outline:none;min-width:220px;font-family:Georgia,serif;"/>
+  <input id="journal-waitlist-email" type="email" placeholder="your@email.com" style="padding:14px 18px;border:1px solid #e0d8d0;font-size:11px;letter-spacing:0.08em;outline:none;min-width:220px;font-family:Georgia,serif;background:#ffffff;"/>
   <button id="journal-waitlist-btn" style="padding:14px 28px;background:#1a1a1a;color:white;border:none;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;">Join the Waitlist</button>
 </div>
     </div>
@@ -152,7 +152,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
   <p class="r" style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:18px;font-weight:300;color:#c8a060;margin-bottom:40px;line-height:1.4;">more love.<br>always more love.</p><div class="r" style="display:flex;max-width:460px;margin:0 auto 16px;">
     <input type="email" placeholder="your@email.com" style="flex:1;padding:15px 18px;border:1px solid #efefef;font-size:14px;outline:none;color:#1a1a1a;"/>
     <button onclick="(function(){
-  var btn = this;
   var input = this.previousElementSibling;
   var email = input.value.trim();
   if(!email || !email.includes('@')){input.style.border='1px solid #ff6b6b';return;}
@@ -269,3 +268,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 </footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(i=>{if(i.isIntersecting){i.target.style.opacity='1';i.target.style.transform='translateY(0)';}});},{threshold:0.08});
 document.querySelectorAll('.r').forEach(el=>{el.
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('journal-waitlist-btn');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+  var input = document.getElementById('journal-waitlist-email');
+  var email = input.value.trim();
+  if (!email || !email.includes('@')) { input.style.border='1px solid #ff6b6b'; return; }
+  btn.textContent = 'Joining...';
+  btn.disabled = true;
+  fetch('https://yfpccyvtzeyspfybepjn.supabase.co/rest/v1/waitlist', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmcGNjeXZ0emV5c3BmeWJlcGpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNTg0MjcsImV4cCI6MjA4NzYzNDQyN30.eLyp5E6qEOgyOkb5ugO3_kd-ujedB55CLvXUeR4dbyM',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmcGNjeXZ0emV5c3BmeWJlcGpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNTg0MjcsImV4cCI6MjA4NzYzNDQyN30.eLyp5E6qEOgyOkb5ugO3_kd-ujedB55CLvXUeR4dbyM',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({ email: email })
+  }).then(function(r) {
+    if (r.ok || r.status === 409) {
+      input.value = '';
+      btn.textContent = "You're on the list!";
+      btn.style.background = '#ff69b4';
+    } else { btn.textContent = 'Try again'; btn.disabled = false; }
+  }).catch(function() { btn.textContent = 'Try again'; btn.disabled = false; });
+  });
+}); 
+</script>
