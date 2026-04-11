@@ -46,18 +46,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
     gap:12px!important;
   }
 
-  /* Pricing - stack vertically */
-  .pricing-grid{
-    grid-template-columns:1fr!important;
-    padding:48px 24px!important;
-    gap:0!important;
-    margin-bottom:0!important;
-  }
-  .pricing-grid>div{padding:36px 28px!important;}
+  /* Pricing - stack vertically - handled by separate media query below */
 
   /* Email section */
   #email{padding:60px 24px!important;}
   #email>div{flex-direction:column!important;max-width:100%!important;}
+
+@media(max-width:600px){
+  .pricing-grid{
+    grid-template-columns:1fr!important;
+    padding:24px 16px!important;
+    gap:0!important;
+  }
+  .pricing-grid>div{padding:36px 28px!important;}
+}
   #email input{width:100%!important;margin-bottom:10px!important;}
   #email button{width:100%!important;}
 
@@ -69,8 +71,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
   .preorder-banner{padding:48px 24px!important;}
 
 }
-
-  .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);}
 </style></head><body><nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid #efefef;flex-wrap:wrap;gap:8px;">
   <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="#ff69b4"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -131,7 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
   <p class="r" style="font-family:Georgia,serif;font-style:italic;font-size:15px;color:#888888;margin-bottom:60px;">Simple, beautiful pricing. Everything you need to fill yourself up.</p>
   <div class="pricing-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#efefef;max-width:860px;">
 
-    <div style="background:#f5f3f0;padding:48px 40px;">
+    <div style="background:#fff;padding:48px 40px;">
       <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#888888;display:block;margin-bottom:20px;">Monthly</span>
       <div style="font-family:'Playfair Display',Georgia,serif;font-size:52px;font-weight:300;line-height:1;color:#1a1a1a;margin-bottom:4px;">$14<span style="font-size:26px">.99</span></div>
       <span style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#888888;display:block;margin-bottom:36px;">try free 3 days · then $14.99/month</span>
